@@ -104,22 +104,165 @@ header h1 {
 
 .container {
     max-width: 960px;
-    margin: 2rem auto;
+    margin: 0.5rem auto 2rem; /* Reduced top margin */
     background-color: rgba(255, 255, 255, 0.85);
     border-radius: 16px;
-    padding: 2rem;
+    padding: 1rem 2rem 2rem; /* Reduced top padding */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     animation: fadeInUp 1s ease-out;
 }
 
+/* Tab container with arrows */
+.tabs-container {
+    position: relative;
+    margin: 0.4rem 0 1.25rem;
+    width: 100%;
+}
+
+/* Default mobile styles - tabs wrap */
 .tabs {
     display: flex;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+    flex: 1;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: thin; /* Show thin scrollbar for Firefox */
+    scrollbar-color: rgba(255, 103, 0, 0.6) rgba(0, 0, 0, 0.05);
+    gap: 0.5rem;
+    padding: 0.5rem 0 10px; /* Add bottom padding for scrollbar */
+    position: relative;
+    z-index: 1;
+    padding-bottom: 15px; /* Space for scrollbar */
+    margin-bottom: -10px; /* Compensate for extra padding */
+}
+
+/* Custom scrollbar for WebKit browsers */
+.tabs::-webkit-scrollbar {
+    height: 6px;
+    display: block;
+}
+
+.tabs::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 3px;
+    margin: 0 10px;
+}
+
+.tabs::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 103, 0, 0.6);
+    border-radius: 3px;
+    transition: background-color 0.2s ease;
+}
+
+.tabs::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(230, 92, 0, 0.8);
+}
+
+/* Navigation arrows - Purely visual */
+.nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: #ff6700;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 3;
+    opacity: 0.7;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.nav-arrow:hover {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.1);
+    background: #ff6700;
+    color: white;
+}
+
+.nav-arrow:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.left-arrow {
+    left: 5px;
+}
+
+.right-arrow {
+    right: 5px;
+}
+
+/* Hide arrows on mobile */
+@media (max-width: 767px) {
+    .nav-arrow {
+        display: none;
+    }
+}
+
+/* Desktop styles */
+@media (min-width: 768px) {
+    .tabs {
+        flex-wrap: nowrap;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        padding: 0.2rem 0;
+        margin: 0;
+        width: 100%;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .tab-button {
+        margin: 0; /* No negative margin */
+        flex-shrink: 0; /* Prevent tabs from shrinking */
+        padding: 0.3rem 0.8rem 0.5rem; /* Slightly reduced padding */
+    }
+    
+    /* Custom scrollbar for WebKit */
+    .tabs::-webkit-scrollbar {
+        height: 3px;
+    }
+    
+    .tabs::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 165, 0, 0.4);
+        border-radius: 2px;
+    }
+    
+    .tabs::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(255, 165, 0, 0.6);
+    }
+}
+
+/* For Webkit browsers like Chrome/Safari */
+.tabs::-webkit-scrollbar {
+    height: 3px; /* Very thin scrollbar */
+}
+
+.tabs::-webkit-scrollbar-track {
+    background: transparent; /* Make track transparent */
+}
+
+.tabs::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 165, 0, 0.8);
+    border-radius: 0; /* No rounded corners for thinner look */
+    transition: background-color 0.2s;
+}
+
+.tabs::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 165, 0, 0.9);
 }
 
 .tab-button {
-    padding: 0.5rem 1rem;
+    margin: 0.2rem 0; /* Default margin for mobile */
+    padding: 0.4rem 0.8rem 0.6rem;
+    font-size: 0.9em; /* Slightly smaller font for mobile */
     background-color: #ffe9c4;
     border: none;
     border-left: 6px solid #ffa500;
@@ -127,7 +270,17 @@ header h1 {
     cursor: pointer;
     font-weight: bold;
     color: #333;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Only transform and shadow */
+    flex-shrink: 0; /* Prevent buttons from shrinking */
+    position: relative;
+    top: 0; /* Initial position */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow */
+}
+
+.tab-button:hover {
+    transform: translateY(-2px); /* Reduced upward movement */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* Slightly reduced shadow */
+    z-index: 2; /* Ensure hovered tab appears above others */
 }
 
 .recharge-button {
@@ -184,6 +337,41 @@ header h1 {
 
 .contact-button:active {
     transform: translateY(1px);
+}
+
+/* Account Button Styles */
+.tab-button.account-button {
+    background: linear-gradient(45deg, #80deea 0%, #4dd0e1 100%);
+    color: #006064;
+    text-shadow: 0 1px 1px rgba(255,255,255,0.5);
+    border: none;
+    border-left: 6px solid #4db6ac;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: 0 4px 15px rgba(77, 208, 225, 0.3);
+    animation: accountPulse 2s infinite;
+}
+
+.tab-button.account-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(77, 208, 225, 0.4);
+}
+
+.tab-button.account-button:active {
+    transform: translateY(1px);
+}
+
+@keyframes accountPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(128, 222, 234, 0.5);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(128, 222, 234, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(128, 222, 234, 0);
+    }
 }
 
 @keyframes pulseBlue {
@@ -393,6 +581,22 @@ html {
     margin: 15px 0;
 }
 
+/* Account container styling with anchor offset */
+.account-container {
+    scroll-margin-top: 80px; /* Space for fixed header */
+    padding: 20px 0;
+    margin: 30px 0 0 0;
+    border-top: 2px dashed #ffd1b3;
+}
+
+/* Add a subtle highlight to the target section */
+.account-container.highlight {
+    animation: highlight 1.5s ease-out;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 15px 0;
+}
+
 @keyframes highlight {
     0% { 
         background-color: rgba(255, 165, 0, 0.1);
@@ -457,6 +661,16 @@ html {
 
 .payment-reminder {
     color: #ff4d4f;
+    font-size: 0.9em;
+    font-weight: 500;
+    margin-top: 4px;
+    padding: 6px 10px;
+    background-color: #fff2f0;
+    border-radius: 2px;
+}
+
+.account-reminder {
+    color: #6d560c;
     font-size: 0.9em;
     font-weight: 500;
     margin-top: 4px;
@@ -981,6 +1195,48 @@ button[type="submit"]:active {
     margin: 20px 0;
 }
 
+/* FAQ Section Styles */
+.account-container {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.account-container h3 {
+    color: #2c3e50;
+    border-bottom: 2px solid #eaeaea;
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+.account-images {
+    margin: 20px 0;
+}
+
+.account-image-pair {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Ensure first two images stay on first line, third on second line */
+.account-image-container {
+    flex: 0 0 calc(50% - 10px); /* Half width minus half the gap */
+    max-width: calc(50% - 10px);
+    min-width: 200px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
 .image-pair {
     display: flex;
     flex-wrap: wrap;
@@ -997,14 +1253,30 @@ button[type="submit"]:active {
         flex-direction: column;
         align-items: center;
     }
+
+    .account-image-pair {
+        flex-direction: column;
+        align-items: center;
+    }
     
     .image-container {
         width: 100%;
         max-width: 100%;
         margin-bottom: 15px;
     }
+
+    .account-image-container {
+        flex: 1 0 100%;
+        max-width: 100%;
+        margin-bottom: 15px;
+    }
     
     .issue-image {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .account-image {
         max-width: 100%;
         height: auto;
     }
@@ -1019,6 +1291,8 @@ button[type="submit"]:active {
     flex-direction: column;
     align-items: center;
 }
+
+/* Removed duplicate .account-image-container rules */
 
 .issue-image {
     width: 100%;
@@ -1041,6 +1315,31 @@ button[type="submit"]:active {
 .issue-image[src*=".jpg"],
 .issue-image[src*=".jpeg"],
 .issue-image[src*=".png"] {
+    object-fit: contain; /* Show full image without cropping */
+    background-color: #f5f5f5; /* Fallback background */
+}
+
+.account-image {
+    width: 100%;
+    height: 250px; /* Fixed height */
+    object-fit: cover; /* Ensures images cover the area without distortion */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #f5f5f5; /* Fallback background color */
+    cursor: pointer;
+}
+
+.account-image:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Ensure images maintain aspect ratio */
+.account-image[src*=".jpg"],
+.account-image[src*=".jpeg"],
+.account-image[src*=".png"] {
     object-fit: contain; /* Show full image without cropping */
     background-color: #f5f5f5; /* Fallback background */
 }
@@ -1118,6 +1417,11 @@ button[type="submit"]:active {
     margin: 20px 0;
 }
 
+.account-image-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
 .recharge-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -1191,6 +1495,40 @@ button[type="submit"]:active {
     text-decoration: underline;
 }
 
+.account-feature {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.account-feature h4 {
+    color: #2c3e50;
+    margin-top: 0;
+}
+
+.account-feature ol {
+    padding-left: 20px;
+    margin: 15px 0 0 0;
+}
+
+.account-feature li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.account-link {
+    color: #ff6700;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+.account-link:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
 .button {
     display: inline-block;
     background: #3498db;
@@ -1239,6 +1577,13 @@ button[type="submit"]:active {
     flex-direction: column;
     align-items: center;
 }
+
+.account-image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 
 .new-member-benefit-link {
     color: #9a1200;
