@@ -58,7 +58,11 @@
                             <li>📱 Puffin 浏览器（手机上玩）：<a href="https://www.puffin.com/" target="_blank">点击了解</a></li>
                         </ul>
                     </li>
-                    <li>5. 注册账号后，把昵称发群里找<a href="#" onclick="showNewbieContact(); return false;" class="new-member-benefit-link">新人福利管理</a>领取🎁大礼包哦！</li>
+                    <li>5. 注册账号后，登入游戏，新手福利在精彩活动那边领取😍</li>
+                    <ul>
+                        <li>精彩活动需要30等级和打一场副本才开放，跳过游戏教程升级和打一场蚂蚁🐜先</li>
+                        <li>老G礼包找<a href="#" onclick="showNewbieContact(); return false;" class="new-member-benefit-link">服主(小胡同志)</a>领取</li>
+                    </ul>
                 </ul>
             </div>
 
@@ -75,7 +79,7 @@
                 </ul>
             </div>
 
-            <div class="section downloads">
+            <div class="section downloads">Å
                 <h2>新手资料下载</h2>
                 <a href="./downloads/系统讲解.pdf" target="_blank">⚙️ 系统讲解</a>
                 <a href="./downloads/装扮ID查询及命令说明.pdf" target="_blank">👔 装扮ID查询及命令说明</a>
@@ -421,9 +425,18 @@
         </div>
 
         <div id="event" class="tab-content">
+            <div class="section">
+                <h2>烟雨弹弹堂 第二届 PVP (2vs2) 大赛</h2>
+                <li>6月30日开始比赛，每组选手必须在48小时内完成比赛，否则视为弃权</li>
+                <li>选手名单和队伍：<a href="./downloads/pvp2vs2list.jpeg" target="_blank" class="image-link">点击观看</a></li>
+                <br><br>
+                <img src="./downloads/pvp2vs2.jpeg" alt="PVP图片" style="max-width: 100%; height: auto;" />
+                <br>
+            </div>
+
             <div class="section downloads">
                 <h2>烟雨弹弹堂 第二届 PVP (1vs1) 大赛</h2>
-                <li>6月20日开始比赛，每组选手必须在48小时内完成比赛，否则视为弃权</li>
+                <li>恭喜图图堡、蛙蛙、小艺同学获得第二届pvp单人赛前三，可以额外获得一次宠物外观更换机会，其余奖励，6月25日前完成制作发放</li>
                 <br><br>
                 <img src="./downloads/pvp1vs1.jpeg" alt="PVP图片" style="max-width: 100%; height: auto;" />
                 <br>
@@ -436,7 +449,7 @@
                 <div class="profile-grid">
                     <!-- Contact 1 -->
                     <div class="profile-rectangle">
-                        <div class="profile-header">
+                        <div id="contact-newbie" class="profile-header">
                             <div class="profile-avatar">
                                 <img src="./downloads/profile/xiaohu.jpeg" alt="服主" data-qr="./downloads/profile/huWechatQR.jpeg" class="clickable-avatar">
                             </div>
@@ -490,7 +503,7 @@
                     </div>
 
                     <!-- Contact 3 -->
-                    <div id="contact-newbie" class="profile-rectangle">
+                    <div class="profile-rectangle">
                         <div class="profile-header">
                             <div class="profile-avatar">
                                 <img src="./downloads/profile/ws.jpeg" alt="Staff 3" class="clickable-avatar" data-qr="./downloads/profile/unknownQR.jpeg">
@@ -951,6 +964,7 @@
             a[href*="issue3answer1.jpeg"], 
             a[href*="issue4answer1.jpeg"], 
             a[href*="issue4answer2.jpeg"],
+            a[href*="pvp2vs2list.jpeg"],
             .issue-image,
             .recharge-image`
         );
